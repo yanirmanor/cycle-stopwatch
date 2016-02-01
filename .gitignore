@@ -1,0 +1,13 @@
+# npm stuff
+node_modules/
+npm-debug.log
+
+# System stuff
+.DS_Store
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.directory
