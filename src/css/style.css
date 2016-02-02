@@ -26,3 +26,16 @@
   vertical-align: middle;
   margin: 5px;
 }
+
+.lap-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lap-info{
+    font-size: 35px;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    text-align: center;
+}
