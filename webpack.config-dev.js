@@ -1,31 +1,46 @@
 const path = require("path");
 const webpack = require("webpack");
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     
-    entry:{
-        'src' : './src/js/imv.js'
-    },
+    context: path.join(__dirname, 'src'),
     
+    entry: ["./js/imv.js", "./style/app.scss"],
+
     output: {
-        path : __dirname,
+        path: __dirname,
         filename: 'public/bundle.js',
         sourceMapFilename: "debugging/[file].map",
         pathinfo: true,
     },
-    
+
     debug: true,
-    
+
     devtool: "source-map",
-    
-    profile: true,
-    
-    module:{
-        loaders:[{
-            test: /\.js$/,
-            loaders: ['babel'],
-            exclude: /node_modules/
-        }]
-    }
-    
+
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loaders: ['babel'],
+                exclude: /node_modules/
+            },
+            // Extract SCSS
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap=true&sourceMapContents=true')
+            }
+        ]
+    },
+
+    postcss: function () {
+        return [autoprefixer];
+    },
+
+    plugins: [
+        new ExtractTextPlugin('public/app.css', { allChunks: false }),
+    ],
+
 }

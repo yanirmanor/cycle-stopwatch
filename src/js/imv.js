@@ -1,6 +1,6 @@
 import {div, button, h2, makeDOMDriver} from '@cycle/dom';
 import Cycle from '@cycle/core';
-import Rx from 'rx';
+import Rx from 'rx'; 
 
 const initialState = { isRunning:false, tick:0, laps:[]};
 
@@ -51,7 +51,15 @@ function view(state) {
     .startWith(initialState)
     .map( state =>
       div('.container',[
-        div('.number',String(state.tick)),      
+        div('#face',[
+            div('#glass',[
+                div('#twelve'),
+                div('#three'),
+                div('#six'),
+                div('#nine'),
+                div('.number',String(state.tick))
+            ])  
+        ]),      
         state.isRunning ? null : button('.btn .start','start') ,
         state.isRunning ? div([
           button('.btn .stop','stop'),
